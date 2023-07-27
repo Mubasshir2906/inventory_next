@@ -1,0 +1,74 @@
+[
+    {
+        "projectID":"1",
+        "projectName":"White House",
+        "model":"Cisco C9300-24UX",
+        "serial":"SN24569846",
+        "status":"available",
+        "dateIn":"07/25/2023",
+        "dateOut":"NA"
+    },
+    {
+        "projectID":"1",
+        "projectName":"White House",
+        "model":"Cisco C9300-24UX",
+        "serial":"SN24569846",
+        "status":"available",
+        "dateIn":"07/25/2023",
+        "dateOut":"NA"
+    },
+    {
+        "projectID":"1",
+        "projectName":"White House",
+        "model":"Cisco C9300-24UX",
+        "serial":"SN24569846",
+        "status":"available",
+        "dateIn":"07/25/2023",
+        "dateOut":"NA"
+    },
+    {
+        "projectID":"2",
+        "projectName":"White House",
+        "model":"Cisco C9300-24UX",
+        "serial":"SN24569846",
+        "status":"available",
+        "dateIn":"07/25/2023",
+        "dateOut":"NA"
+    },
+    {
+        "projectID":"2",
+        "projectName":"White House",
+        "model":"Cisco C9300-24UX",
+        "serial":"SN24569846",
+        "status":"available",
+        "dateIn":"07/25/2023",
+        "dateOut":"NA"
+    },
+    {
+        "projectID":"3",
+        "projectName":"White House",
+        "model":"Cisco C9300-24UX",
+        "serial":"SN24569846",
+        "status":"available",
+        "dateIn":"07/25/2023",
+        "dateOut":"NA"
+    },
+    {
+        "projectID":"3",
+        "projectName":"White House",
+        "model":"Cisco C9300-24UX",
+        "serial":"SN24569846",
+        "status":"available",
+        "dateIn":"07/25/2023",
+        "dateOut":"NA"
+    },
+    {
+        "projectID":"3",
+        "projectName":"White House",
+        "model":"Cisco C9300-24UX",
+        "serial":"SN24569846",
+        "status":"available",
+        "dateIn":"07/25/2023",
+        "dateOut":"NA"
+    }
+]

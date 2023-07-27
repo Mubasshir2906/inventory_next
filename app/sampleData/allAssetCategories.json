@@ -1,0 +1,58 @@
+[
+    {
+        "_id":"1",
+        "title":"Switch",
+        "category":"switches",
+        "description":"To add a network switch",
+        "icon":"<PiDesktopBold/>"
+    },
+    {
+        "_id":"2",
+        "title":"Firewall",
+        "category":"firewall",
+        "description":"To add a network Firewall",
+        "icon":"<PiDesktopBold/>"
+    },
+    {
+        "_id":"3",
+        "title":"Wirless AP" ,
+        "category":"wirless-ap",
+        "description":"To add an Access Point",
+        "icon":"<PiDesktopBold/>"
+    },
+    {
+        "_id":"4",
+        "title":"Laptop",
+        "category":"laptop",
+        "description":"To add a user laptop",
+        "icon":"<PiDesktopBold/>"
+    },
+    {
+        "_id":"5",
+        "title":"Desktop",
+        "category":"desktop",
+        "description":"To add a user desktop",
+        "icon":"<PiDesktopBold/>"
+    },
+    {
+        "_id":"6",
+        "title":"Mobile",
+        "category":"mobile",
+        "description":"To add a user mobile",
+        "icon":"<PiDesktopBold/>"
+    },
+    {
+        "_id":"7",
+        "title":"Licence",
+        "category":"licence",
+        "description":"To add a software licence",
+        "icon":"<PiDesktopBold/>"
+    },
+    {
+        "_id":"8",
+        "title":"Support",
+        "category":"support",
+        "description":"To add a vendor support",
+        "icon":"<PiDesktopBold/>"
+    }
+]

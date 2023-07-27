@@ -1,0 +1,56 @@
+[
+    {
+        "_id":"1",
+        "name":"Adobe Photoshop CC",
+        "category":"Graphics",
+        "assigned":true,
+        "assignedTo":"Person X",
+        "installedOn":"27/07/2023",
+        "expiresOn":"26/07/2024"
+    },
+    {
+        "_id":"1",
+        "name":"Adobe Photoshop CC",
+        "category":"Graphics",
+        "assigned":true,
+        "assignedTo":"Person X",
+        "installedOn":"27/07/2023",
+        "expiresOn":"26/07/2024"
+    },
+    {
+        "_id":"1",
+        "name":"Adobe Photoshop CC",
+        "category":"Graphics",
+        "assigned":true,
+        "assignedTo":"Person X",
+        "installedOn":"27/07/2023",
+        "expiresOn":"26/07/2024"
+    },
+    {
+        "_id":"1",
+        "name":"Adobe Photoshop CC",
+        "category":"Graphics",
+        "assigned":true,
+        "assignedTo":"Person X",
+        "installedOn":"27/07/2023",
+        "expiresOn":"26/07/2024"
+    },
+    {
+        "_id":"1",
+        "name":"Adobe Photoshop CC",
+        "category":"Graphics",
+        "assigned":true,
+        "assignedTo":"Person X",
+        "installedOn":"27/07/2023",
+        "expiresOn":"26/07/2024"
+    },
+    {
+        "_id":"1",
+        "name":"Adobe Photoshop CC",
+        "category":"Graphics",
+        "assigned":true,
+        "assignedTo":"Person X",
+        "installedOn":"27/07/2023",
+        "expiresOn":"26/07/2024"
+    }
+]
