@@ -1,8 +1,8 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
-import {addSwitch} from'@/app/clientHelpers/switchesHelper.js'
-import {addFirewall} from '@/app/clientHelpers/firewallHelper.js'
+import {addSwitch} from'@/app/_clientHelpers/switchesHelper.js'
+import {addFirewall} from '@/app/_clientHelpers/firewallHelper.js'
 
 const AddNewAsset = () => {
   const params = useParams()

@@ -3,7 +3,8 @@ import axios from 'axios'
 export async function addSwitch(switchData){
     console.log("From Switch helper method")
     console.log(switchData)
-    //const response = await axios.post('/api/switches', switchData)
+    const newSwitch = {...switchData, projectID:"", status:true, dateIn: new Date()}
+    const response = await axios.post('/api/switches', switchData)
     console.log(response)
 }
 
