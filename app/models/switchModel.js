@@ -14,6 +14,6 @@ const switchSchema = mongoose.Schema({
     comments: String
 })
 
-const Switch = mongoose.switches | mongoose.model("switches", switchSchema)
+const Switch = mongoose.models.switches || mongoose.model("switches", switchSchema)
 
 export default Switch

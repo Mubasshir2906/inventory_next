@@ -1,0 +1,82 @@
+[
+    {
+        "date": "07-23-2023",
+        "asset" : "Cisco 2960CX",
+        "serial" : "SN123546789",
+        "action" : "Check-in",
+        "description" : "Something",
+        "user" : "Person 1"
+    },
+    {
+        "date": "07-23-2023",
+        "asset" : "Cisco 2960CX",
+        "serial" : "SN123546789",
+        "action" : "Check-in",
+        "description" : "Something",
+        "user" : "Person 1"
+    },
+    {
+        "date": "07-23-2023",
+        "asset" : "Cisco 2960CX",
+        "serial" : "SN123546789",
+        "action" : "Check-in",
+        "description" : "Something",
+        "user" : "Person 1"
+    },
+    {
+        "date": "07-23-2023",
+        "asset" : "Cisco 2960CX",
+        "serial" : "SN123546789",
+        "action" : "Check-in",
+        "description" : "Something",
+        "user" : "Person 1"
+    },
+    {
+        "date": "07-23-2023",
+        "asset" : "Cisco 2960CX",
+        "serial" : "SN123546789",
+        "action" : "Check-in",
+        "description" : "Something",
+        "user" : "Person 1"
+    },
+    {
+        "date": "07-23-2023",
+        "asset" : "Cisco 2960CX",
+        "serial" : "SN123546789",
+        "action" : "Check-in",
+        "description" : "Something",
+        "user" : "Person 1"
+    },
+    {
+        "date": "07-23-2023",
+        "asset" : "Cisco 2960CX",
+        "serial" : "SN123546789",
+        "action" : "Check-in",
+        "description" : "Something",
+        "user" : "Person 1"
+    },
+    {
+        "date": "07-23-2023",
+        "asset" : "Cisco 2960CX",
+        "serial" : "SN123546789",
+        "action" : "Check-in",
+        "description" : "Something",
+        "user" : "Person 1"
+    },
+    {
+        "date": "07-23-2023",
+        "asset" : "Cisco 2960CX",
+        "serial" : "SN123546789",
+        "action" : "Check-in",
+        "description" : "Something",
+        "user" : "Person 1"
+    },
+    {
+        "date": "07-23-2023",
+        "asset" : "Cisco 2960CX",
+        "serial" : "SN123546789",
+        "action" : "Check-in",
+        "description" : "Something",
+        "user" : "Person 1"
+    }
+]

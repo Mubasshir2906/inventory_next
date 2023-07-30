@@ -13,7 +13,7 @@ const SwitchesTable = () => {
       <h1 className='text-2xl text-slate-100 font-bold'>Switches</h1>
       {switches && <div className='mt-3 bg-slate-700/50 rounded-md'>
         <table className='w-full text-slate-300 text-sm  '>
-          <thead className=''>
+          <thead className='bg-slate-700'>
             <tr className=''>
               <th className='w-[5%] text-center p-3'>#</th>
               <th className='w-[20%] text-center p-3'>Model</th>
@@ -27,7 +27,7 @@ const SwitchesTable = () => {
            
           </thead>
           <tbody>
-            {switches.map((item,index) => (<tr key={index} className='hover:bg-slate-800'>
+            {switches.map((item,index) => (<tr key={index} className='hover:bg-slate-600'>
               <td className='text-center p-3 text-slate-400'>{index+1}</td>
               <td className='text-center p-3 text-slate-400'>{item.model}</td>
               <td className='text-center p-3 text-slate-400'>{item.serial}</td>

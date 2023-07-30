@@ -4,6 +4,18 @@ import dbConnect from '@/app/dbConfig/dbConnect.js'
 
 dbConnect()
 
+export async function GET(request){
+
+    console.log("Request for all projects received")
+    const allProjects = await Projects.find()
+    //console.log(allProjects)
+    if(!allProjects){
+        //console.log(JSON.parse(allProjects))
+        return NextResponse.json({msg:"No projects found"},{status:400})
+    }
+    else return NextResponse.json({msg:"ok", allProjects},{status:200})
+}
+
 export async function POST(request){
     try{
         const reqBody = await request.json()
@@ -27,3 +39,4 @@ export async function POST(request){
         return NextResponse.json({msg:"Error in creating project", data: error },{status:500})
     }
 }
+

@@ -1,17 +1,18 @@
 import axios from "axios";
 import toast from 'react-hot-toast'
 
-export async function getAllProjects(){
-    const response = await axios.get('/api/projects')
-    console.log(response.data.allProjects)
-    return response.data.allProjects
+export async function getAllCategories(){
+    const response = await axios.get('/api/categories')
+    console.log(response.data.allCategories)
+    return response.data.allCategories
 }
-export async function getProjectDetails(){
+export async function getCategoryDetails(){
 
 }
-export async function addProject(project){
+export async function addCategory(category){
     try{
-        const response = await axios.post('/api/projects',project) //msg,data,status will be received
+        console.log(category)
+        const response = await axios.post('/api/categories',category) //msg,data,status will be received
     console.log("Response in helper",response)
     switch(response.status){
         case 200 : {
@@ -36,9 +37,9 @@ export async function addProject(project){
         
     }
 }
-export async function updateProject(){
+export async function updateCategory(){
 
 }
-export async function deleteProject(){
+export async function deleteCategory(){
 
 }
