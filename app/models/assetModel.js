@@ -1,8 +1,9 @@
 import mongoose from 'mongoose';
 
 const assetSchema = mongoose.Schema({
-    category:String,
-    title:String,
+    category: String,
+    vendor: String,
+    title: String,
     description: String,
     icon: String
 })

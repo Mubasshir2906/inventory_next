@@ -4,6 +4,7 @@ import { useRouter, usePathname } from 'next/navigation'
 import {getAllProjects} from '@/app/_clientHelpers/projectHelper.js'
 import {getAllCategories} from '@/app/_clientHelpers/categoryHelper'
 import { getAllVendors } from '@/app/_clientHelpers/vendorHelper'
+import { getAllAssets } from '@/app/_clientHelpers/assetHelper'
 import ProjectCard from '@/app/_components/ProjectCard'
 import SettingsAssetCard from '@/app/_components/SettingsAssetCard'
 
@@ -11,6 +12,7 @@ const Settings = () => {
   const [projects,setProjects] = useState()
   const [categories, setCategories] = useState()
   const [vendors,setVendors] = useState()
+  const [assets,setAssets] = useState()
   const router = useRouter()
   const pathname= usePathname()
 
@@ -18,10 +20,12 @@ const Settings = () => {
     const allProjects = await getAllProjects()
     const allCategories = await getAllCategories()
     const allVendors = await getAllVendors()
+    const allAssets = await getAllAssets()
     //console.log(data)
     setProjects(allProjects)
     setCategories(allCategories)
     setVendors(allVendors)
+    setAssets(allAssets)
   }
 
   useEffect(()=>{
@@ -51,9 +55,9 @@ const Settings = () => {
         </div>
       </div>
       <div>
-        <h4 className='text-slate-100 text-2xl font-bold mb-3'>Models</h4>
+        <h4 className='text-slate-100 text-2xl font-bold mb-3'>Asset Models</h4>
         <div className='flex flex-wrap gap-4'>
-          {categories && categories.map((category,index) => <SettingsAssetCard category={category} />)}
+          {assets && assets.map((category,index) => <SettingsAssetCard category={category} />)}
           <button onClick={()=>{router.push(`${pathname}/add-asset`)}} className='px-6 text-indigo-500 text-2xl font-bold border-4 rounded-lg border-indigo-500'><p>+</p></button>
         </div>
       </div>
