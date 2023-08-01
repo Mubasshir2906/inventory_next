@@ -1,4 +1,6 @@
 import mongoose from 'mongoose';
+import Category from '@/app/models/categoryModel.js'
+import Vendor from '@/app/models/vendorModel.js'
 
 const assetSchema = mongoose.Schema({
     category: String,

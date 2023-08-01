@@ -3,7 +3,7 @@ import toast from 'react-hot-toast'
 
 export async function getAllVendors(){
     const response = await axios.get('/api/vendors')
-    console.log(response.data.allVendors)
+    //console.log(response.data.allVendors)
     return response.data.allVendors
 }
 export async function getCategoryDetails(){

@@ -13,6 +13,7 @@ export async function addAsset(asset){
     try{
         console.log(asset)
         const formattedAsset = {...asset, title: asset.vendor+" "+asset.title}
+        console.log(formattedAsset)
         const response = await axios.post('/api/assets',formattedAsset) //msg,data,status will be received
     console.log("Response in helper",response)
     switch(response.status){

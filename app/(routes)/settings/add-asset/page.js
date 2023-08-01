@@ -16,16 +16,28 @@ const AddAsset = () => {
       const allCategories = await getAllCategories()
       const allVendors = await getAllVendors()
       setCategories(allCategories)
+      
       setVendors(allVendors)
+      
     }
     useEffect(()=>{
       getAllData()
+      console.log(categories)
+      console.log(vendors)
     },[])
     const onChange = (e) => {
       setAsset((prev)=>({...prev, [e.target.name]:e.target.value}))
+      console.log(e.target.value)
     }
+    // const onDropDownChange = (e) => {
+    //   setAsset((prev)=>({...prev, [e.target.name]:JSON.parse(e.target.value)}))
+    //   console.log(e.target.value)
+    // }
     const onSubmit = async (e) => {
+        console.log(categories)
+        console.log(vendors)
         e.preventDefault()
+        console.log(asset)
         const response = await addAsset(asset)
         console.log(response)
         if(response.status){
@@ -48,19 +60,19 @@ const AddAsset = () => {
               <span className='text-slate-300 text-lg font-bold'>Category</span>
                <select type='text' name='category' defaultValue="DEFAULT" onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '>
                 <option className='text-slate-300' disabled value="DEFAULT">Select Category</option>
-                {categories && categories.map(category => (<option className='text-slate-300 p-2 hover:bg-yellow-400' value={category.title}>{category.title}</option>))}
+                {categories && categories.map(category => (<option key={category.title} className='text-slate-300 p-2 hover:bg-yellow-400' value={category.title}>{category.title}</option>))}
                </select>
             </label>
             <label className='flex flex-col w-[48%] gap-1'>
               <span className='text-slate-300 text-lg font-bold'>Vendor</span>
                <select type='text' name='vendor' defaultValue="DEFAULT" onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '>
                <option className='text-slate-300' disabled value="DEFAULT">Select Vendor</option>
-                {vendors && vendors.map(vendor => (<option className='text-slate-300 p-2 hover:bg-yellow-400' value={vendor.title} >{vendor.title}</option>))}
+                {vendors && vendors.map(vendor => (<option key={vendor.title} className='text-slate-300 p-2 hover:bg-yellow-400' value={vendor.title} >{vendor.title}</option>))}
                </select>
             </label>
             <label className='flex flex-col w-full gap-1'>
               <span className='text-slate-300 text-lg font-bold'>Title</span>
-               <input type='text' name='title' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+               <input type='text' name='title' onChange={(e) => onChange(e)} placeholder='Model (without vendor name)' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
             </label>
             
             <label className='flex flex-col w-full gap-1'>

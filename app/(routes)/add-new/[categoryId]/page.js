@@ -3,13 +3,27 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
 import {addSwitch} from'@/app/_clientHelpers/switchesHelper.js'
 import {addFirewall} from '@/app/_clientHelpers/firewallHelper.js'
+import {getAllCategories} from '@/app/_clientHelpers/categoryHelper.js'
+import {getAllVendors} from '@/app/_clientHelpers/vendorHelper.js'
+import {getAllAssets} from '@/app/_clientHelpers/assetHelper'
+import { getAllProjects } from '@/app/_clientHelpers/projectHelper'
 
 const AddNewAsset = () => {
   const params = useParams()
   const [newFileds, setNewFields] = useState({})
+  const [model,setModel]=useState()
+  const [projects,setProjects] = useState()
+  
 
+  const getData = async ()=>{
+    const data = await getAllAssets()
+    const allProjects = await getAllProjects()
+    setProjects(allProjects)
+    setModel(data)
+  }
   useEffect(()=>{
     setNewFields((prev) => ({...prev, category:params.categoryId}))
+    getData()
   },[])
 
   const onChange = (event)=>{
@@ -65,7 +79,12 @@ const AddNewAsset = () => {
           <form onSubmit={(e)=>onSubmit(e)} className='flex gap-6 flex-wrap justify-between'>
             <label className='flex flex-col w-full gap-1'>
               <span className='text-slate-300 text-lg font-bold'>Project</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+               {/* <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input> */}
+               <select type='text' name='projectName' defaultValue="DEFAULT" onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '>
+                <option value="DEFAULT" disabled>Select project</option>
+                {projects && projects.map(project => (<option key={project.title} value={project}>{project.projectName}</option>))}
+               </select>
+               
             </label>
             <label className='flex flex-col w-[48%] gap-1'>
               <span className='text-slate-300 text-lg font-bold'>Model</span>
