@@ -23,7 +23,7 @@ export async function POST(request){
 
     //checking project already exists
     const projectExist = Projects.findOne({projectCode:reqBody.projectCode})
-    if(projectExist){
+    if(projectExist.projectCode){
         //return NextResponse.status(403).json({msg:"Already exist"})
         return NextResponse.json({msg:"Project Already exist"}, {status: 400 })
     }

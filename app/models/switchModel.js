@@ -1,11 +1,11 @@
 import mongoose from 'mongoose';
 
 const switchSchema = mongoose.Schema({
-    projectID:String,
     projectName: String,
     assetModel:String,
     assetSerial:String,
     assetName:String,
+    assetVendor: String,
     status:Boolean,
     dateIn: Date,
     dateOut: Date,
