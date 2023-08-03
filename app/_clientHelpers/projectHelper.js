@@ -3,7 +3,7 @@ import toast from 'react-hot-toast'
 
 export async function getAllProjects(){
     const response = await axios.get('/api/projects')
-    console.log(response.data.allProjects)
+    //console.log(response.data.allProjects)
     return response.data.allProjects
 }
 export async function getProjectDetails(){
@@ -12,7 +12,7 @@ export async function getProjectDetails(){
 export async function addProject(project){
     try{
         const response = await axios.post('/api/projects',project) //msg,data,status will be received
-    console.log("Response in helper",response)
+    //console.log("Response in helper",response)
     switch(response.status){
         case 200 : {
             toast.success("Project added successfully")
@@ -31,7 +31,7 @@ export async function addProject(project){
     }
     catch(error){
         toast.error(error.response.data.msg)
-        //console.log(error.response.data.msg)
+        ////console.log(error.response.data.msg)
         return {status: false}
         
     }

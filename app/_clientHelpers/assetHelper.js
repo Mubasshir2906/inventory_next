@@ -3,7 +3,7 @@ import toast from 'react-hot-toast'
 
 export async function getAllAssets(){
     const response = await axios.get('/api/assets')
-    console.log(response.data.allAssets)
+    ////console.log(response.data.allAssets)
     return response.data.allAssets
 }
 export async function getAssetDetails(){
@@ -11,11 +11,11 @@ export async function getAssetDetails(){
 }
 export async function addAsset(asset){
     try{
-        console.log(asset)
+        //console.log(asset)
         const formattedAsset = {...asset, title: asset.vendor+" "+asset.title}
-        console.log(formattedAsset)
+        //console.log(formattedAsset)
         const response = await axios.post('/api/assets',formattedAsset) //msg,data,status will be received
-    console.log("Response in helper",response)
+    //console.log("Response in helper",response)
     switch(response.status){
         case 200 : {
             toast.success("Asset added successfully")
@@ -34,7 +34,7 @@ export async function addAsset(asset){
     }
     catch(error){
         toast.error(error.response.data.msg)
-        //console.log(error.response.data.msg)
+        ////console.log(error.response.data.msg)
         return {status: false}
         
     }

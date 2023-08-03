@@ -8,7 +8,7 @@ export async function GET(request){
 
     console.log("Request for all vendors received")
     const allVendors = await Vendor.find()
-    console.log(allVendors)
+    //console.log(allVendors)
     if(!allVendors){
         //console.log(JSON.parse(allProjects))
         return NextResponse.json({msg:"No Vendor found"},{status:400})

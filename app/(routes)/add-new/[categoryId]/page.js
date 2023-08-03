@@ -73,11 +73,11 @@ const AddNewAsset = () => {
     
   }
   const {categoryId} = params
-  switch(categoryId){
-    case "switches":{
+  // switch(categoryId){
+  //   case "switches":{
       return (
         <div className='w-full px-16 py-4'>
-          <h3 className='text-2xl text-white font-bold mb-3'>Add Switch</h3>
+          <h3 className='text-2xl text-white font-bold mb-3'>Add { categoryId.includes("-")? ((categoryId.split("-")[0][0].toUpperCase()+categoryId.split("-")[0].slice(1)) + "-" + categoryId.split("-")[1].toUpperCase()): categoryId[0].toUpperCase() + categoryId.slice(1) }</h3>
           <div className='bg-slate-700 w-full px-16 py-8 rounded-lg'>
           
           <form onSubmit={(e)=>onSubmit(e)} className='flex gap-4 flex-wrap justify-between'>
@@ -95,13 +95,23 @@ const AddNewAsset = () => {
                <input type='text' name='assetName' onChange={(e) => onChange(e)}  placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
             </label>
 
-            <label className='flex flex-col w-[48%] gap-1'>
+            {["switches","firewall","wireless-ap","laptop"].includes(categoryId) && (<label className='flex flex-col w-[48%] gap-1'>
               <span className='text-slate-300 text-base font-bold'>Vendor</span>
+              {console.log(categoryId)}
                <select name='assetVendor' defaultValue='DEFAULT' onChange={(e) => onChange(e)}  placeholder='Manufacturer' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '>
                 <option value="DEFAULT" disabled>Select Vendor</option>
                 {vendors && vendors.map(vendor => <option key={vendor.title} value={vendor.title}>{vendor.title}</option>)}
                </select>
-            </label>
+            </label>)}
+
+            {["support","licence","wireless-ap","laptop"].includes(categoryId) && (<label className='flex flex-col w-[48%] gap-1'>
+              <span className='text-slate-300 text-base font-bold'>Provider</span>
+              {console.log(categoryId)}
+               <select name='assetProvider' defaultValue='DEFAULT' onChange={(e) => onChange(e)}  placeholder='Manufacturer' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '>
+                <option value="DEFAULT" disabled>Select Provider</option>
+                {vendors && vendors.map(vendor => <option key={vendor.title} value={vendor.title}>{vendor.title}</option>)}
+               </select>
+            </label>)}
 
             <label className='flex flex-col w-[48%] gap-1'>
               <span className='text-slate-300 text-base font-bold'>Model</span>
@@ -109,7 +119,7 @@ const AddNewAsset = () => {
                 <option value="DEFAULT" disabled>Select Asset Model</option>
                 {assetModels && assetModels.map(model => {
                   if(model.vendor === newFileds.assetVendor)
-                    { return <option value={model.title}>{model.title}</option>}
+                    { return <option key={model.title} value={model.title}>{model.title}</option>}
                 })}
                </select>
             </label>
@@ -139,331 +149,331 @@ const AddNewAsset = () => {
           
         </div>
       )
-      break;
-    }
-    case "firewall":{
-      return (
-        <div className='w-full px-16 py-4'>
-          <h3 className='text-2xl text-white font-bold mb-3'>Add Firewall</h3>
-          <div className='bg-slate-700 w-full px-16 py-8 rounded-lg'>
+  //     break;
+  //   }
+  //   case "firewall":{
+  //     return (
+  //       <div className='w-full px-16 py-4'>
+  //         <h3 className='text-2xl text-white font-bold mb-3'>Add { categoryId.includes("-")? ((categoryId.split("-")[0][0].toUpperCase()+categoryId.split("-")[0].slice(1)) + "-" + categoryId.split("-")[1].toUpperCase()): categoryId[0].toUpperCase() + categoryId.slice(1) }</h3>
+  //         <div className='bg-slate-700 w-full px-16 py-8 rounded-lg'>
           
-          <form onSubmit={(event)=>onSubmit(event)} className='flex gap-6 flex-wrap justify-between'>
-            <label className='flex flex-col w-full gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Project</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-[48%] gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Model</span>
-               <input type='text' name='assetModel' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-[48%] gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Serial Number</span>
-               <input type='text' name='assetSerial' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-[48%] gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Asset Name</span>
-               <input type='text' name='assetName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-[48%] gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Purchased Date</span>
-               <input type='text' name='datePurchased' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-full gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Image</span>
-               <input type='text' name='assetImage' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-full gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Comments</span>
-               <input type='text' name='comments' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <div className='w-full flex gap-4 justify-end mt-6'>
-              <button className='bg-red-400/80 py-2 px-4 rounded-lg text-slate-100'>Cancel</button>
-              <button className='bg-emerald-400/80 py-2 px-4 rounded-lg text-slate-100'>Save</button>
-            </div>
-          </form>
-          </div>
+  //         <form onSubmit={(event)=>onSubmit(event)} className='flex gap-6 flex-wrap justify-between'>
+  //           <label className='flex flex-col w-full gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Project</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-[48%] gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Model</span>
+  //              <input type='text' name='assetModel' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-[48%] gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Serial Number</span>
+  //              <input type='text' name='assetSerial' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-[48%] gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Asset Name</span>
+  //              <input type='text' name='assetName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-[48%] gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Purchased Date</span>
+  //              <input type='text' name='datePurchased' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-full gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Image</span>
+  //              <input type='text' name='assetImage' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-full gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Comments</span>
+  //              <input type='text' name='comments' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <div className='w-full flex gap-4 justify-end mt-6'>
+  //             <button className='bg-red-400/80 py-2 px-4 rounded-lg text-slate-100'>Cancel</button>
+  //             <button className='bg-emerald-400/80 py-2 px-4 rounded-lg text-slate-100'>Save</button>
+  //           </div>
+  //         </form>
+  //         </div>
           
-        </div>
-      )
-      break;
-    }
-    case "wirless-ap":{
-      return (
-        <div className='w-full px-16 py-8'>
-          <h3 className='text-2xl text-white font-bold mb-3'>Add Access Point</h3>
-          <div className='bg-slate-700 w-full px-16 py-8 rounded-lg'>
+  //       </div>
+  //     )
+  //     break;
+  //   }
+  //   case "wirless-ap":{
+  //     return (
+  //       <div className='w-full px-16 py-8'>
+  //         <h3 className='text-2xl text-white font-bold mb-3'>Add { categoryId.includes("-")? ((categoryId.split("-")[0][0].toUpperCase()+categoryId.split("-")[0].slice(1)) + "-" + categoryId.split("-")[1].toUpperCase()): categoryId[0].toUpperCase() + categoryId.slice(1) }</h3>
+  //         <div className='bg-slate-700 w-full px-16 py-8 rounded-lg'>
           
-          <form onSubmit={(event)=>onSubmit(event)}  className='flex gap-6 flex-wrap justify-between'>
-            <label className='flex flex-col w-full gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Project</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-[48%] gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Model</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-[48%] gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Serial Number</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-[48%] gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Asset Name</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-[48%] gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Purchased Date</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-full gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Image</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-full gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Comments</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <div className='w-full flex gap-4 justify-end mt-6'>
-              <button className='bg-red-400/80 py-2 px-4 rounded-lg text-slate-100'>Cancel</button>
-              <button className='bg-emerald-400/80 py-2 px-4 rounded-lg text-slate-100'>Save</button>
-            </div>
-          </form>
-          </div>
+  //         <form onSubmit={(event)=>onSubmit(event)}  className='flex gap-6 flex-wrap justify-between'>
+  //           <label className='flex flex-col w-full gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Project</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-[48%] gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Model</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-[48%] gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Serial Number</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-[48%] gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Asset Name</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-[48%] gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Purchased Date</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-full gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Image</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-full gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Comments</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <div className='w-full flex gap-4 justify-end mt-6'>
+  //             <button className='bg-red-400/80 py-2 px-4 rounded-lg text-slate-100'>Cancel</button>
+  //             <button className='bg-emerald-400/80 py-2 px-4 rounded-lg text-slate-100'>Save</button>
+  //           </div>
+  //         </form>
+  //         </div>
           
-        </div>
-      )
-      break;
-    }
-    case "laptop":{
-      return (
-        <div className='w-full px-16 py-8'>
-          <h3 className='text-2xl text-white font-bold mb-3'>Add Laptop</h3>
-          <div className='bg-slate-700 w-full px-16 py-8 rounded-lg'>
+  //       </div>
+  //     )
+  //     break;
+  //   }
+  //   case "laptop":{
+  //     return (
+  //       <div className='w-full px-16 py-8'>
+  //         <h3 className='text-2xl text-white font-bold mb-3'>Add { categoryId.includes("-")? ((categoryId.split("-")[0][0].toUpperCase()+categoryId.split("-")[0].slice(1)) + "-" + categoryId.split("-")[1].toUpperCase()): categoryId[0].toUpperCase() + categoryId.slice(1) }</h3>
+  //         <div className='bg-slate-700 w-full px-16 py-8 rounded-lg'>
           
-          <form onSubmit={(event)=>onSubmit(event)}  className='flex gap-6 flex-wrap justify-between'>
-            <label className='flex flex-col w-full gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Project</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-[48%] gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Model</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-[48%] gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Serial Number</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-[48%] gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Asset Name</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-[48%] gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Purchased Date</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-full gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Image</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-full gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Comments</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <div className='w-full flex gap-4 justify-end mt-6'>
-              <button className='bg-red-400/80 py-2 px-4 rounded-lg text-slate-100'>Cancel</button>
-              <button className='bg-emerald-400/80 py-2 px-4 rounded-lg text-slate-100'>Save</button>
-            </div>
-          </form>
-          </div>
+  //         <form onSubmit={(event)=>onSubmit(event)}  className='flex gap-6 flex-wrap justify-between'>
+  //           <label className='flex flex-col w-full gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Project</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-[48%] gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Model</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-[48%] gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Serial Number</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-[48%] gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Asset Name</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-[48%] gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Purchased Date</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-full gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Image</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-full gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Comments</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <div className='w-full flex gap-4 justify-end mt-6'>
+  //             <button className='bg-red-400/80 py-2 px-4 rounded-lg text-slate-100'>Cancel</button>
+  //             <button className='bg-emerald-400/80 py-2 px-4 rounded-lg text-slate-100'>Save</button>
+  //           </div>
+  //         </form>
+  //         </div>
           
-        </div>
-      )
-      break;
-    }
-    case "desktop":{
-      return (
-        <div className='w-full px-16 py-8'>
-          <h3 className='text-2xl text-white font-bold mb-3'>Add Desktop</h3>
-          <div className='bg-slate-700 w-full px-16 py-8 rounded-lg'>
+  //       </div>
+  //     )
+  //     break;
+  //   }
+  //   case "desktop":{
+  //     return (
+  //       <div className='w-full px-16 py-8'>
+  //         <h3 className='text-2xl text-white font-bold mb-3'>Add { categoryId.includes("-")? ((categoryId.split("-")[0][0].toUpperCase()+categoryId.split("-")[0].slice(1)) + "-" + categoryId.split("-")[1].toUpperCase()): categoryId[0].toUpperCase() + categoryId.slice(1) }</h3>
+  //         <div className='bg-slate-700 w-full px-16 py-8 rounded-lg'>
           
-          <form onSubmit={(event)=>onSubmit(event)}  className='flex gap-6 flex-wrap justify-between'>
-            <label className='flex flex-col w-full gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Project</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-[48%] gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Model</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-[48%] gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Serial Number</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-[48%] gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Asset Name</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-[48%] gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Purchased Date</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-full gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Image</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-full gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Comments</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <div className='w-full flex gap-4 justify-end mt-6'>
-              <button className='bg-red-400/80 py-2 px-4 rounded-lg text-slate-100'>Cancel</button>
-              <button className='bg-emerald-400/80 py-2 px-4 rounded-lg text-slate-100'>Save</button>
-            </div>
-          </form>
-          </div>
+  //         <form onSubmit={(event)=>onSubmit(event)}  className='flex gap-6 flex-wrap justify-between'>
+  //           <label className='flex flex-col w-full gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Project</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-[48%] gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Model</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-[48%] gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Serial Number</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-[48%] gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Asset Name</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-[48%] gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Purchased Date</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-full gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Image</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-full gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Comments</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <div className='w-full flex gap-4 justify-end mt-6'>
+  //             <button className='bg-red-400/80 py-2 px-4 rounded-lg text-slate-100'>Cancel</button>
+  //             <button className='bg-emerald-400/80 py-2 px-4 rounded-lg text-slate-100'>Save</button>
+  //           </div>
+  //         </form>
+  //         </div>
           
-        </div>
-      )
-      break;
-    }
-    case "mobile":{
-      return (
-        <div className='w-full px-16 py-8'>
-          <h3 className='text-2xl text-white font-bold mb-3'>Add Mobile</h3>
-          <div className='bg-slate-700 w-full px-16 py-8 rounded-lg'>
+  //       </div>
+  //     )
+  //     break;
+  //   }
+  //   case "mobile":{
+  //     return (
+  //       <div className='w-full px-16 py-8'>
+  //         <h3 className='text-2xl text-white font-bold mb-3'>Add { categoryId.includes("-")? ((categoryId.split("-")[0][0].toUpperCase()+categoryId.split("-")[0].slice(1)) + "-" + categoryId.split("-")[1].toUpperCase()): categoryId[0].toUpperCase() + categoryId.slice(1) }</h3>
+  //         <div className='bg-slate-700 w-full px-16 py-8 rounded-lg'>
           
-          <form onSubmit={(event)=>onSubmit(event)}  className='flex gap-6 flex-wrap justify-between'>
-            <label className='flex flex-col w-full gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Project</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-[48%] gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Model</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-[48%] gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Serial Number</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-[48%] gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Asset Name</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-[48%] gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Purchased Date</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-full gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Image</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-full gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Comments</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <div className='w-full flex gap-4 justify-end mt-6'>
-              <button className='bg-red-400/80 py-2 px-4 rounded-lg text-slate-100'>Cancel</button>
-              <button className='bg-emerald-400/80 py-2 px-4 rounded-lg text-slate-100'>Save</button>
-            </div>
-          </form>
-          </div>
+  //         <form onSubmit={(event)=>onSubmit(event)}  className='flex gap-6 flex-wrap justify-between'>
+  //           <label className='flex flex-col w-full gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Project</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-[48%] gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Model</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-[48%] gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Serial Number</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-[48%] gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Asset Name</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-[48%] gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Purchased Date</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-full gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Image</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-full gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Comments</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <div className='w-full flex gap-4 justify-end mt-6'>
+  //             <button className='bg-red-400/80 py-2 px-4 rounded-lg text-slate-100'>Cancel</button>
+  //             <button className='bg-emerald-400/80 py-2 px-4 rounded-lg text-slate-100'>Save</button>
+  //           </div>
+  //         </form>
+  //         </div>
           
-        </div>
-      )
-      break;
-    }
-    case "licence":{
-      return (
-        <div className='w-full px-16 py-8'>
-          <h3 className='text-2xl text-white font-bold mb-3'>Add Licence</h3>
-          <div className='bg-slate-700 w-full px-16 py-8 rounded-lg'>
+  //       </div>
+  //     )
+  //     break;
+  //   }
+  //   case "licence":{
+  //     return (
+  //       <div className='w-full px-16 py-8'>
+  //         <h3 className='text-2xl text-white font-bold mb-3'>Add { categoryId.includes("-")? ((categoryId.split("-")[0][0].toUpperCase()+categoryId.split("-")[0].slice(1)) + "-" + categoryId.split("-")[1].toUpperCase()): categoryId[0].toUpperCase() + categoryId.slice(1) }</h3>
+  //         <div className='bg-slate-700 w-full px-16 py-8 rounded-lg'>
           
-          <form onSubmit={(event)=>onSubmit(event)}  className='flex gap-6 flex-wrap justify-between'>
-            <label className='flex flex-col w-full gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Project</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-[48%] gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Model</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-[48%] gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Serial Number</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-[48%] gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Asset Name</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-[48%] gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Purchased Date</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-full gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Image</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-full gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Comments</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <div className='w-full flex gap-4 justify-end mt-6'>
-              <button className='bg-red-400/80 py-2 px-4 rounded-lg text-slate-100'>Cancel</button>
-              <button className='bg-emerald-400/80 py-2 px-4 rounded-lg text-slate-100'>Save</button>
-            </div>
-          </form>
-          </div>
+  //         <form onSubmit={(event)=>onSubmit(event)}  className='flex gap-6 flex-wrap justify-between'>
+  //           <label className='flex flex-col w-full gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Project</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-[48%] gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Model</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-[48%] gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Serial Number</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-[48%] gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Asset Name</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-[48%] gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Purchased Date</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-full gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Image</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-full gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Comments</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <div className='w-full flex gap-4 justify-end mt-6'>
+  //             <button className='bg-red-400/80 py-2 px-4 rounded-lg text-slate-100'>Cancel</button>
+  //             <button className='bg-emerald-400/80 py-2 px-4 rounded-lg text-slate-100'>Save</button>
+  //           </div>
+  //         </form>
+  //         </div>
           
-        </div>
-      )
-      break;
-    }
-    case "support":{
-      return (
-        <div className='w-full px-16 py-8'>
-          <h3 className='text-2xl text-white font-bold mb-3'>Add Support</h3>
-          <div className='bg-slate-700 w-full px-16 py-8 rounded-lg'>
+  //       </div>
+  //     )
+  //     break;
+  //   }
+  //   case "support":{
+  //     return (
+  //       <div className='w-full px-16 py-8'>
+  //         <h3 className='text-2xl text-white font-bold mb-3'>Add { categoryId.includes("-")? ((categoryId.split("-")[0][0].toUpperCase()+categoryId.split("-")[0].slice(1)) + "-" + categoryId.split("-")[1].toUpperCase()): categoryId[0].toUpperCase() + categoryId.slice(1) }</h3>
+  //         <div className='bg-slate-700 w-full px-16 py-8 rounded-lg'>
           
-          <form onSubmit={(event)=>onSubmit(event)} className='flex gap-6 flex-wrap justify-between'>
-            <label className='flex flex-col w-full gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Project</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-[48%] gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Model</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-[48%] gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Serial Number</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-[48%] gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Asset Name</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-[48%] gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Purchased Date</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-full gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Image</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <label className='flex flex-col w-full gap-1'>
-              <span className='text-slate-300 text-lg font-bold'>Comments</span>
-               <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
-            </label>
-            <div className='w-full flex gap-4 justify-end mt-6'>
-              <button className='bg-red-400/80 py-2 px-4 rounded-lg text-slate-100'>Cancel</button>
-              <button className='bg-emerald-400/80 py-2 px-4 rounded-lg text-slate-100'>Save</button>
-            </div>
-          </form>
-          </div>
+  //         <form onSubmit={(event)=>onSubmit(event)} className='flex gap-6 flex-wrap justify-between'>
+  //           <label className='flex flex-col w-full gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Project</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-[48%] gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Model</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-[48%] gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Serial Number</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-[48%] gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Asset Name</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-[48%] gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Purchased Date</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-full gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Image</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <label className='flex flex-col w-full gap-1'>
+  //             <span className='text-slate-300 text-lg font-bold'>Comments</span>
+  //              <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input>
+  //           </label>
+  //           <div className='w-full flex gap-4 justify-end mt-6'>
+  //             <button className='bg-red-400/80 py-2 px-4 rounded-lg text-slate-100'>Cancel</button>
+  //             <button className='bg-emerald-400/80 py-2 px-4 rounded-lg text-slate-100'>Save</button>
+  //           </div>
+  //         </form>
+  //         </div>
           
-        </div>
-      )
-      break;
-    }
-  }
+  //       </div>
+  //     )
+  //     break;
+  //   }
+  // }
   
 
 }
