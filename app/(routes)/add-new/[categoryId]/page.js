@@ -1,6 +1,6 @@
 "use client"
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'next/navigation'
+import { useParams,useRouter } from 'next/navigation'
 import {addSwitch} from'@/app/_clientHelpers/switchesHelper.js'
 import {addFirewall} from '@/app/_clientHelpers/firewallHelper.js'
 import {getAllCategories} from '@/app/_clientHelpers/categoryHelper.js'
@@ -10,6 +10,7 @@ import { getAllProjects } from '@/app/_clientHelpers/projectHelper'
 import { model } from 'mongoose'
 
 const AddNewAsset = () => {
+  const router = useRouter()
   const params = useParams()
   const [newFileds, setNewFields] = useState({})
   const [projects,setProjects] = useState()
@@ -33,12 +34,15 @@ const AddNewAsset = () => {
   const onChange = (event)=>{
     setNewFields((prev) =>({...prev, [event.target.name]:event.target.value}))
   }
-  const onSubmit = (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault()
     //console.log(newFileds)
     switch(categoryId){
       case "switches":{
-        addSwitch(newFileds)
+        const resStatus = await addSwitch(newFileds)
+        if(resStatus === 200){
+          router.push("/add-new")
+        }
         break;
       }
       case "firewall":{
@@ -86,7 +90,7 @@ const AddNewAsset = () => {
                {/* <input type='text' name='projectName' onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '></input> */}
                <select type='text' name='projectName' defaultValue="DEFAULT" onChange={(e) => onChange(e)} placeholder='Model' className='p-2 rounded-lg bg-slate-800 focus:outline-none focus:bg-slate-950 text-slate-300 '>
                 <option value="DEFAULT" disabled>Select project</option>
-                {projects && projects.map(project => (<option key={project.title} value={project}>{project.projectName}</option>))}
+                {projects && projects.map(project => (<option key={project.title} value={project.projectName}>{project.projectName}</option>))}
                </select>
             </label>
 
